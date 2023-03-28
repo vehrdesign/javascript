@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="radio.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <input type="radio" id="apple_radio" name="fruits" value="apple" checked>
+    <label class="radio-label" for="apple_radio">apple</label><br>
+    <input type="radio" id="banana_radio" name="fruits" value="banana">
+    <label class="radio-label" for="banana_radio">banana</label><br>
+
+    <script>
+        // $("label").click(function () {
+        //     alert("Label clicked");
+        //     $(this).parent().css("color", "blue");
+        //     $(this).css("color", "green");
+
+        // });
+
+        $(".radio-label").click(function () {
+            alert("radio-Label clicked");
+            $(this).parent().attdr("value") = "peach";
+            $(this).parent().css("background-color", "red");
+            $(this).css("background-color", "blue");
+            $(this).parent() = "peach";
+             $(this).parent().prop('value', "peach");
+
+        });
+
+    </script>
+    <!-- 
+    <script>
+        $("img").click(function () {
+            //this is change select value 1
+            var currentValue = ($(this).attr("alt"));
+            /* change select menu */
+            $('#fruits').val(currentValue).trigger('change');
+            /* change radio button */
+            $('input:radio[value="' + currentValue + '"]').prop('checked', true).trigger('change');
+        });
+
+        /* set first radio as active */
+        $("img:first").addClass("active");
+
+        /* change Active State on click/select */
+        $("img").click(function () {
+            $("img").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        /* on select change the active state */
+        $("#fruits").change(function () {
+            var currentValue = $(this).val();
+            $("img").removeClass("active");
+            $('img[alt="' + currentValue + '"]').addClass("active");
+            $('input:radio[value="' + currentValue + '"]').prop('checked', true).trigger('change');
+        });
+
+        /* on radio change the active state */
+        $("input[type=radio]").change(function () {
+            var currentValue = $(this).val();
+            $("img").removeClass("active");
+            $('img[alt="' + currentValue + '"]').addClass("active");
+            $('#fruits').val(currentValue).trigger('change');
+        });
+
+
+    </script> -->
+
+</body>
+
+</html>

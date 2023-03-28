@@ -1,0 +1,11 @@
+body{
+    padding: 10px;
+  }
+  
+  img, input, label, select{
+    cursor: pointer;
+  }
+  
+  .active{
+    border: 2px solid red;
+  }
