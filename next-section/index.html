@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        section { min-height:800px; }
+        #arrow {
+            position:fixed; 
+            right:0; 
+            top:0;
+            background-color:black;
+            color:white;
+        }
+        #arrow a{
+            display:inline-block;
+            padding:10px 20px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+        
+            var pagePositon = 0,
+                sectionsSeclector = 'section',
+                $scrollItems = $(sectionsSeclector),
+                offsetTolorence = 30,
+                pageMaxPosition = $scrollItems.length - 1;
+            
+            //Map the sections:
+            $scrollItems.each(function(index,ele) { $(ele).attr("debog",index).data("pos",index); });
+        
+            // Bind to scroll
+            $(window).bind('scroll',upPos);
+            
+            //Move on click:
+            $('#arrow a').click(function(e){
+                if ($(this).hasClass('next') && pagePositon+1 <= pageMaxPosition) {
+                    pagePositon++;
+                    $('html, body').stop().animate({ 
+                        scrollTop: $scrollItems.eq(pagePositon).offset().top
+                    }, 300);
+                }
+                if ($(this).hasClass('previous') && pagePositon-1 >= 0) {
+                    pagePositon--;
+                    $('html, body').stop().animate({ 
+                        scrollTop: $scrollItems.eq(pagePositon).offset().top
+                    }, 300);
+                    return false;
+                }
+            });
+            
+            //Update position func:
+            function upPos(){
+            var fromTop = $(this).scrollTop();
+            var $cur = null;
+                $scrollItems.each(function(index,ele){
+                    if ($(ele).offset().top < fromTop + offsetTolorence) $cur = $(ele);
+                });
+            if ($cur != null && pagePositon != $cur.data('pos')) {
+                pagePositon = $cur.data('pos');
+            }                   
+            }
+            
+        });
+    </script>
+    
+        <div id="arrow">
+            <a class="next">next</a>
+            <a class="previous">prev</a>
+        </div>
+        <section style="background-color:green">
+        </section>
+        <section style="background-color:blue">
+        </section>
+        <section style="background-color:red">
+        </section>
+    </body>
+</html>
